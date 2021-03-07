@@ -9,11 +9,12 @@ using System.Text;
 
 namespace Core.Aspects.Autofac.Validation
 {
-    public class ValidationAspect : MethodInterception
+    public class ValidationAspect : MethodInterception  //Aspect 'timiz. Aspect demek metodun sonunda başında çalıştığında hata veren yapı.
     {
         private Type _validatorType;
         public ValidationAspect(Type validatorType)
         {
+            //defensive coding
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new System.Exception("Bu bir doğrulama sınıfı değil");
@@ -21,9 +22,9 @@ namespace Core.Aspects.Autofac.Validation
 
             _validatorType = validatorType;
         }
-        protected override void OnBefore(IInvocation invocation)
+        protected override void OnBefore(IInvocation invocation)  //burda OnBefore u eziyoruz.
         {
-            var validator = (IValidator)Activator.CreateInstance(_validatorType);
+            var validator = (IValidator)Activator.CreateInstance(_validatorType);  //çalışma anında instance kullanmak istersen Activator.CreateInstance kullanırsın.
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];
             var entities = invocation.Arguments.Where(t => t.GetType() == entityType);
             foreach (var entity in entities)
