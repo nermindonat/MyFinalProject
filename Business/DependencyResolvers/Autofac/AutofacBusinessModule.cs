@@ -17,10 +17,14 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // SİngleInstance tel bir instance tutuyor.
-            //over yaz tab tab yap ezielebilir metotları verecek. load ı bul.
+            // SingleInstance tel bir instance tutuyor.
+            //over yaz tab tab yap ezilebilir metotları verecek. load ı bul.
+
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
+
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

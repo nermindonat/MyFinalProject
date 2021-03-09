@@ -14,7 +14,6 @@ namespace Business.Abstract
         IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max);   //Şu aralıklarda getir.
         IDataResult<List<ProductDetailDto>> GetProductDetails();
         IDataResult<Product> GetById(int productId);   //Product döndürüyor.
-
         IResult Add(Product product);
         IResult Update(Product product);
     }
