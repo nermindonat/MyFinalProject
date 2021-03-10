@@ -29,6 +29,9 @@ namespace Business.Concrete
             _categoryService = categoryService;
 
         }
+        //Claim 
+        //[SecuredOperation("product.add,admin")]
+        //verdiğimiz bir aspect ismi
         [ValidationAspect(typeof(ProductValidator))]   //bu bir attribute tür.
         public IResult Add(Product product)
         {
