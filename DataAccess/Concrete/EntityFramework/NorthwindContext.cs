@@ -1,4 +1,5 @@
-﻿using Core.Entities.Concrete;
+﻿
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,16 +8,15 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    //context nesnesi Db tabloları ile proje classlarını bağlamak için kullanılır.
-    //OnConfiguring: bu metot senin projen hangi veritabanı ile ilişkiyi belirttiğin yerdir. 
-    public class NorthwindContext:DbContext
+    //Context : Db tabloları ile proje classlarını bağlamak
+    public class NorthwindContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Northwind;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-NJ1RRJV\MSSQLSERVER01;Database=Northwind;Trusted_Connection=true");
         }
 
-        public DbSet<Product> Products { get; set; }   //DbSet: Product ı Products a bağla
+        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -26,3 +26,6 @@ namespace DataAccess.Concrete.EntityFramework
 
     }
 }
+//DbSet: Product ı Products a bağla
+//context nesnesi Db tabloları ile proje classlarını bağlamak için kullanılır.
+//OnConfiguring: bu metot senin projen hangi veritabanı ile ilişkiyi belirttiğin yerdir. 
